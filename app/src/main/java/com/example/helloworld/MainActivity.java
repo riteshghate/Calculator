@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.EditText;
+import org.mariuszgromada.math.mxparser.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,7 +93,14 @@ public class MainActivity extends AppCompatActivity {
         updateText("-");
     }
     public void equalsBTN(View view){
-        updateText("=");
+        String userExp = DisplayText.getText().toString();
+
+        Expression exp = new Expression(userExp);
+
+        String res = String.valueOf(exp.calculate());
+
+        DisplayText.setText(res);
+        DisplayText.setSelection(res.length());
     }
     public void exponentBTN(View view){
         updateText("^");
